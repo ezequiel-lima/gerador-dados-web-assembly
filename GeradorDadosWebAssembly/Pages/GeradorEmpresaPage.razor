@@ -1,0 +1,185 @@
+﻿@page "/gerar-empresa"
+@inject IGeradorEmpresaService GeradorEmpresaService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar Empresa com Pontuação?</MudText>
+            <MudText Typo="Typo.subtitle1">(Nome, CNPJ, CEP, Telefone, Celular)</MudText>
+
+            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Empresa</MudText>
+                    <MudDivider DividerType="DividerType.Middle" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Nome" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Nome)"
+                                  Label="Nome" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cnpj" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cnpj)"
+                                  Label="CNPJ" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.DataAbertura" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.DataAbertura)"
+                                  Label="Data de Abertura" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Site" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Site)"
+                                  Label="Site" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Email" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Email)"
+                                  Label="Email" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.InscricaoEstadual" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.InscricaoEstadual)"
+                                  Label="Inscrição Estadual" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cep" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cep)"
+                                  Label="CEP" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.NumeroEndereco" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.NumeroEndereco)"
+                                  Label="Número" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Estado" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Estado)"
+                                  Label="Estado" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Endereco" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Endereco)"
+                                  Label="Endereço" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Bairro" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Bairro)"
+                                  Label="Bairro" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cidade" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cidade)"
+                                  Label="Cidade" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Telefone" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Telefone)"
+                                  Label="Telefone" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="3">
+                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Celular" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Celular)"
+                                  Label="Celular" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Sócios</MudText>
+                    <MudDivider DividerType="DividerType.Middle" />
+                </MudItem>
+
+
+                @foreach (var socio in empresaGerada.Socio)
+                {
+                    <MudItem xs="6">
+                        <MudTextField Class="mt-2" @bind-Value="socio.Nome" Adornment="Adornment.End"
+                                      AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(socio.Nome)"
+                                      Label="Nome" Variant="Variant.Text" MaxLength="0" />
+                    </MudItem>
+
+                    <MudItem xs="6">
+                        <MudTextField Class="mt-2" @bind-Value="socio.Cpf" Adornment="Adornment.End"
+                                      AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(socio.Cpf)"
+                                      Label="CPF" Variant="Variant.Text" MaxLength="0" />
+                    </MudItem>
+                }
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            @if (carregando)
+            {
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+            }
+            else
+            {
+                <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmpresa">Gerar Nova Empresa</MudButton>
+            }
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de Empresa foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso dos dados gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private EmpresaDto? empresaGerada;
+    private bool comPontuacao = true;
+    private bool carregando = false;
+
+    protected override Task OnInitializedAsync()
+    {
+        empresaGerada ??= new EmpresaDto();
+
+        for (int i = 0; i < 2; i++)
+        {
+            empresaGerada.Socio.Add(new SocioDto());
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+    private async Task GerarEmpresa()
+    {
+        carregando = true;
+        try
+        {
+            empresaGerada = await GeradorEmpresaService.Gerar(comPontuacao);
+        }
+        finally
+        {
+            carregando = false;
+        }
+    }
+
+    private async Task Copiar(string campo)
+    {
+        if (!string.IsNullOrEmpty(campo))
+        {
+            await ClipboardService.WriteTextAsync(campo);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}

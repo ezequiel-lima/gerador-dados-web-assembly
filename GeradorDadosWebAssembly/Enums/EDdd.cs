@@ -1,0 +1,85 @@
+﻿namespace GeradorDadosWebAssembly.Enums
+{
+    public enum EDdd
+    {
+        // Centro-Oeste
+        DistritoFederal_61 = 61,
+        Goias_61 = 61,
+        Goias_62 = 62,
+        Goias_64 = 64,
+        MatoGrosso_65 = 65,
+        MatoGrosso_66 = 66,
+        MatoGrossoDoSul_67 = 67,
+
+        // Nordeste
+        Alagoas_82 = 82,
+        Bahia_71 = 71,
+        Bahia_73 = 73,
+        Bahia_74 = 74,
+        Bahia_75 = 75,
+        Bahia_77 = 77,
+        Ceara_85 = 85,
+        Ceara_88 = 88,
+        Maranhao_98 = 98,
+        Maranhao_99 = 99,
+        Paraiba_83 = 83,
+        Pernambuco_81 = 81,
+        Pernambuco_87 = 87,
+        Piaui_86 = 86,
+        Piaui_89 = 89,
+        RioGrandeDoNorte_84 = 84,
+        Sergipe_79 = 79,
+
+        // Norte
+        Acre_68 = 68,
+        Amapa_96 = 96,
+        Amazonas_92 = 92,
+        Amazonas_97 = 97,
+        Para_91 = 91,
+        Para_93 = 93,
+        Para_94 = 94,
+        Rondonia_69 = 69,
+        Roraima_95 = 95,
+        Tocantins_63 = 63,
+
+        // Sudeste
+        EspiritoSanto_27 = 27,
+        EspiritoSanto_28 = 28,
+        MinasGerais_31 = 31,
+        MinasGerais_32 = 32,
+        MinasGerais_33 = 33,
+        MinasGerais_34 = 34,
+        MinasGerais_35 = 35,
+        MinasGerais_37 = 37,
+        MinasGerais_38 = 38,
+        RioDeJaneiro_21 = 21,
+        RioDeJaneiro_22 = 22,
+        RioDeJaneiro_24 = 24,
+        SaoPaulo_11 = 11,
+        SaoPaulo_12 = 12,
+        SaoPaulo_13 = 13,
+        SaoPaulo_14 = 14,
+        SaoPaulo_15 = 15,
+        SaoPaulo_16 = 16,
+        SaoPaulo_17 = 17,
+        SaoPaulo_18 = 18,
+        SaoPaulo_19 = 19,
+
+        // Sul
+        Parana_41 = 41,
+        Parana_42 = 42,
+        Parana_43 = 43,
+        Parana_44 = 44,
+        Parana_45 = 45,
+        Parana_46 = 46,
+        Parana_49 = 49,
+        RioGrandeDoSul_51 = 51,
+        RioGrandeDoSul_53 = 53,
+        RioGrandeDoSul_54 = 54,
+        RioGrandeDoSul_55 = 55,
+        SantaCatarina_42 = 42,
+        SantaCatarina_47 = 47,
+        SantaCatarina_48 = 48,
+        SantaCatarina_49 = 49
+    }
+}
