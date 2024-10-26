@@ -1,0 +1,46 @@
+﻿@page "/gerar-cpf"
+@inject IGeradorCpfService GeradorCpfService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar CPF com Pontuação?</MudText>
+
+            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+
+            <MudTextField Class="mt-2" @bind-Value="cpfGerado" Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarCpf"
+                          Label="CPF" Variant="Variant.Text" MaxLength="0" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCpf">Gerar Novo CPF</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de CPF foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de CPFs gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? cpfGerado;
+    private bool comPontuacao = true;
+
+    private void GerarCpf()
+    {
+        cpfGerado = GeradorCpfService.Gerar(comPontuacao);
+    }
+
+    private async Task CopiarCpf()
+    {
+        if (!string.IsNullOrEmpty(cpfGerado))
+        {
+            await ClipboardService.WriteTextAsync(cpfGerado);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}
