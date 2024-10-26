@@ -1,0 +1,46 @@
+﻿@page "/gerar-cnpj"
+@inject IGeradorCnpjService GeradorCnpjService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar CNPJ com Pontuação?</MudText>
+
+            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+
+            <MudTextField Class="mt-2" @bind-Value="cnpjGerado" Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarCnpj"
+                          Label="CNPJ" Variant="Variant.Text" MaxLength="0" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCnpj">Gerar Novo CNPJ</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de CNPJ foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de CNPJs gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? cnpjGerado;
+    private bool comPontuacao = true;
+
+    private void GerarCnpj()
+    {
+        cnpjGerado = GeradorCnpjService.Gerar(comPontuacao);
+    }
+
+    private async Task CopiarCnpj()
+    {
+        if (!string.IsNullOrEmpty(cnpjGerado))
+        {
+            await ClipboardService.WriteTextAsync(cnpjGerado);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}

@@ -17,5 +17,6 @@ builder.Services.AddMudServices();
 builder.Services.AddScoped<Faker>();
 builder.Services.AddScoped<IClipboardService, ClipboardService>();
 builder.Services.AddScoped<IGeradorCpfService, GeradorCpfService>();
+builder.Services.AddScoped<IGeradorCnpjService, GeradorCnpjService>();
 
 await builder.Build().RunAsync();
