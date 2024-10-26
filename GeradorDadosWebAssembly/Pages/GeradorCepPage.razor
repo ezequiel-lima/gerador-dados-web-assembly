@@ -1,0 +1,50 @@
+﻿@page "/gerar-cep"
+@inject IGeradorCepService GeradorCepService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar CEP com Pontuação?</MudText>
+            <MudText Typo="Typo.subtitle1">
+                Observação: o CEP gerado pode pertencer a qualquer lugar do mundo,
+                e não necessariamente ao Brasil.
+            </MudText>
+
+            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+
+            <MudTextField Class="mt-2" @bind-Value="cepGerado" Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarCep"
+                          Label="CEP" Variant="Variant.Text" MaxLength="0" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCep">Gerar Novo CEP</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de CEP foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de CEPs gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? cepGerado;
+    private bool comPontuacao = true;
+
+    private void GerarCep()
+    {
+        cepGerado = GeradorCepService.Gerar(comPontuacao);
+    }
+
+    private async Task CopiarCep()
+    {
+        if (!string.IsNullOrEmpty(cepGerado))
+        {
+            await ClipboardService.WriteTextAsync(cepGerado);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}
