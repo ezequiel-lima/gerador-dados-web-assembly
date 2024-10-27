@@ -1,0 +1,19 @@
+﻿<MudCard>
+    <MudCardMedia Image="@Image" Height="@Height" />
+    <MudCardContent>
+        <MudText Typo="@TypoTitle" Color="Color.Primary">@Title</MudText>
+        <MudText Typo="Typo.body2">@Description</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Href="@Href" Variant="Variant.Outlined" Color="Color.Primary">Acessar</MudButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter] public string? Image { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public int Height { get; set; } = 150;
+    [Parameter] public Typo TypoTitle { get; set; } = Typo.h5;
+}
