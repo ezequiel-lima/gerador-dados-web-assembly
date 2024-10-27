@@ -1,7 +1,33 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Gerador de Dados</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudGrid>    
+        <MudItem xs="10">
+            <MudText Typo="Typo.h5" Color="Color.Primary">Bem-vindo ao Gerador de Dados!</MudText>
+            <MudText Typo="Typo.subtitle1" Class="mt-2">
+                Este sistema foi desenvolvido para ajudar desenvolvedores a testar suas aplicações com dados fictícios.
+                Criado com dedicação por João Ezequiel Lima.
+            </MudText>
+        </MudItem>
+        <MudItem xs="2">
+            <MudAvatar Size="Size.Large" Color="Color.Primary" Variant="Variant.Outlined">J</MudAvatar>
+        </MudItem>
+        <MudItem xs="12">
+            <MudDivider></MudDivider>
+        </MudItem>
+        <MudItem xs="4">
+            <MudCard>
+                <MudCardMedia Image="images/door.jpg" Height="100" />
+                <MudCardContent>
+                    <MudText Typo="Typo.h5">Gerador CPF</MudText>
+                    <MudText Typo="Typo.body2">Crie números de CPF válidos para testar suas aplicações de forma rápida e segura.</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Href="gerar-cpf" Variant="Variant.Text" Color="Color.Primary">Gerar</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
