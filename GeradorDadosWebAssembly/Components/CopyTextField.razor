@@ -1,0 +1,24 @@
+﻿@using MudBlazor
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<MudItem xs="@xs">
+    <MudTextField Class="mt-2" @bind-Value="Value" Adornment="Adornment.End"
+                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(Value)"
+                  Label="@Label" Variant="Variant.Text" MaxLength="0" />
+</MudItem>
+
+@code {
+    [Parameter] public int xs { get; set; } = 6; // Valor padrao do Xs
+    [Parameter] public string Label { get; set; } = "Default Label";
+    [Parameter] public string Value { get; set; }
+
+    private async Task Copiar(string campo)
+    {
+        if (!string.IsNullOrEmpty(campo))
+        {
+            await ClipboardService.WriteTextAsync(campo);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}

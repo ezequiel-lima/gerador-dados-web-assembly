@@ -17,111 +17,56 @@
                     <MudDivider DividerType="DividerType.Middle" />
                 </MudItem>
 
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Nome" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Nome)"
-                                  Label="Nome" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <CopyTextField xs="6" Label="Nome" Value="@empresaGerada.Nome" />
+                    <CopyTextField xs="3" Label="CNPJ" Value="@empresaGerada.Cnpj" />
+                    <CopyTextField xs="3" Label="Data de Abertura" Value="@empresaGerada.DataAbertura" />
+                    <CopyTextField xs="6" Label="Site" Value="@empresaGerada.Site" />
+                    <CopyTextField xs="6" Label="E-mail" Value="@empresaGerada.Email" />
+                    <CopyTextField xs="3" Label="Inscrição Estadual" Value="@empresaGerada.InscricaoEstadual" />
+                    <CopyTextField xs="3" Label="CEP" Value="@empresaGerada.Cep" />
+                    <CopyTextField xs="3" Label="Número" Value="@empresaGerada.NumeroEndereco" />
+                    <CopyTextField xs="3" Label="Estado" Value="@empresaGerada.Estado" />
+                    <CopyTextField xs="6" Label="Endereço" Value="@empresaGerada.Endereco" />
+                    <CopyTextField xs="6" Label="Bairro" Value="@empresaGerada.Bairro" />
+                    <CopyTextField xs="6" Label="Cidade" Value="@empresaGerada.Cidade" />
+                    <CopyTextField xs="3" Label="Telefone" Value="@empresaGerada.Telefone" />
+                    <CopyTextField xs="3" Label="Celular" Value="@empresaGerada.Celular" />
+                </MudHidden>
 
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cnpj" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cnpj)"
-                                  Label="CNPJ" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.DataAbertura" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.DataAbertura)"
-                                  Label="Data de Abertura" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Site" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Site)"
-                                  Label="Site" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Email" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Email)"
-                                  Label="Email" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.InscricaoEstadual" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.InscricaoEstadual)"
-                                  Label="Inscrição Estadual" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cep" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cep)"
-                                  Label="CEP" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.NumeroEndereco" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.NumeroEndereco)"
-                                  Label="Número" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Estado" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Estado)"
-                                  Label="Estado" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Endereco" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Endereco)"
-                                  Label="Endereço" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-
-
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Bairro" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Bairro)"
-                                  Label="Bairro" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="6">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Cidade" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Cidade)"
-                                  Label="Cidade" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Telefone" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Telefone)"
-                                  Label="Telefone" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
-
-                <MudItem xs="3">
-                    <MudTextField Class="mt-2" @bind-Value="empresaGerada.Celular" Adornment="Adornment.End"
-                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(empresaGerada.Celular)"
-                                  Label="Celular" Variant="Variant.Text" MaxLength="0" />
-                </MudItem>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <CopyTextField xs="12" Label="Nome" Value="@empresaGerada.Nome" />
+                    <CopyTextField xs="6" Label="CNPJ" Value="@empresaGerada.Cnpj" />
+                    <CopyTextField xs="6" Label="Data de Abertura" Value="@empresaGerada.DataAbertura" />
+                    <CopyTextField xs="12" Label="Site" Value="@empresaGerada.Site" />
+                    <CopyTextField xs="12" Label="E-mail" Value="@empresaGerada.Email" />
+                    <CopyTextField xs="6" Label="Inscrição Estadual" Value="@empresaGerada.InscricaoEstadual" />
+                    <CopyTextField xs="6" Label="CEP" Value="@empresaGerada.Cep" />
+                    <CopyTextField xs="6" Label="Número" Value="@empresaGerada.NumeroEndereco" />
+                    <CopyTextField xs="6" Label="Estado" Value="@empresaGerada.Estado" />
+                    <CopyTextField xs="12" Label="Endereço" Value="@empresaGerada.Endereco" />
+                    <CopyTextField xs="12" Label="Bairro" Value="@empresaGerada.Bairro" />
+                    <CopyTextField xs="12" Label="Cidade" Value="@empresaGerada.Cidade" />
+                    <CopyTextField xs="6" Label="Telefone" Value="@empresaGerada.Telefone" />
+                    <CopyTextField xs="6" Label="Celular" Value="@empresaGerada.Celular" />
+                </MudHidden>
 
                 <MudItem xs="12">
                     <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Sócios</MudText>
                     <MudDivider DividerType="DividerType.Middle" />
                 </MudItem>
 
-
                 @foreach (var socio in empresaGerada.Socio)
                 {
-                    <MudItem xs="6">
-                        <MudTextField Class="mt-2" @bind-Value="socio.Nome" Adornment="Adornment.End"
-                                      AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(socio.Nome)"
-                                      Label="Nome" Variant="Variant.Text" MaxLength="0" />
-                    </MudItem>
+                    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                        <CopyTextField xs="6" Label="Nome" Value="@socio.Nome" />
+                        <CopyTextField xs="6" Label="CPF" Value="@socio.Cpf" />
+                    </MudHidden>
 
-                    <MudItem xs="6">
-                        <MudTextField Class="mt-2" @bind-Value="socio.Cpf" Adornment="Adornment.End"
-                                      AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(socio.Cpf)"
-                                      Label="CPF" Variant="Variant.Text" MaxLength="0" />
-                    </MudItem>
+                    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                        <CopyTextField xs="12" Label="Nome" Value="@socio.Nome" />
+                        <CopyTextField xs="12" Label="CPF" Value="@socio.Cpf" />
+                    </MudHidden>
                 }
             </MudGrid>
         </MudCardContent>
@@ -171,15 +116,6 @@
         finally
         {
             carregando = false;
-        }
-    }
-
-    private async Task Copiar(string campo)
-    {
-        if (!string.IsNullOrEmpty(campo))
-        {
-            await ClipboardService.WriteTextAsync(campo);
-            Snackbar.Add("Copiado!", Severity.Success);
         }
     }
 }
