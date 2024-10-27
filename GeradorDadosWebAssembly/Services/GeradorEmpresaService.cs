@@ -76,6 +76,11 @@ namespace GeradorDadosWebAssembly.Services
                 empresa.Cep = FormatadorDeTextoUtil.RemoverPontuacao(empresa.Cep);
                 empresa.Telefone = FormatadorDeTextoUtil.RemoverPontuacao(empresa.Telefone);
                 empresa.Celular = FormatadorDeTextoUtil.RemoverPontuacao(empresa.Celular);
+
+                foreach (var socio in empresa.Socio)
+                {
+                    socio.Cpf = FormatadorDeTextoUtil.RemoverPontuacao(socio.Cpf);
+                }
             }
         }
     }
