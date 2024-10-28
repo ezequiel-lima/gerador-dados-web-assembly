@@ -1,0 +1,104 @@
+﻿@page "/gerar-pessoa"
+@inject IGeradorPessoaService GeradorPessoaService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<PageTitle>Gerador de Dados de Pessoa</PageTitle>
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar Pessoa com Pontuação?</MudText>
+            <MudText Typo="Typo.subtitle1">(Campos Futuros)</MudText>
+
+            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Dados Pessoais</MudText>
+                    <MudDivider DividerType="DividerType.Middle" />
+                </MudItem>
+
+                <CopyTextField xs="6" Label="Nome" Value="@pessoaGerada.Nome" />
+                <CopyTextField xs="6" Label="CPF" Value="@pessoaGerada.Cpf" />
+
+                <CopyTextField xs="6" Label="RG" Value="@pessoaGerada.Rg" />
+                <CopyTextField xs="3" Label="Data de Nascimento" Value="@pessoaGerada.DataNascimento" />
+                <CopyTextField xs="3" Label="Gênero" Value="@pessoaGerada.Genero" />
+
+                <CopyTextField xs="6" Label="E-Mail" Value="@pessoaGerada.Email" />
+                <CopyTextField xs="6" Label="Senha" Value="@pessoaGerada.Senha" />
+
+                <CopyTextField xs="3" Label="Telefone" Value="@pessoaGerada.Telefone" />
+                <CopyTextField xs="3" Label="Celular" Value="@pessoaGerada.Celular" />
+
+                <CopyTextField xs="3" Label="Altura" Value="@pessoaGerada.Altura" />
+                <CopyTextField xs="3" Label="Peso" Value="@pessoaGerada.Peso" />
+                <CopyTextField xs="3" Label="Tipo Sanguíneo" Value="@pessoaGerada.TipoSanguineo" />
+                <CopyTextField xs="3" Label="Signo" Value="@pessoaGerada.Signo" />
+
+                <MudItem xs="12">
+                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Filiação</MudText>
+                    <MudDivider DividerType="DividerType.Middle" />
+                </MudItem>
+
+                <CopyTextField xs="6" Label="Nome da Mãe" Value="@pessoaGerada.NomeMae" />
+                <CopyTextField xs="6" Label="Nome do Pai" Value="@pessoaGerada.NomePai" />
+
+                <MudItem xs="12">
+                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Endereço</MudText>
+                    <MudDivider DividerType="DividerType.Middle" />
+                </MudItem>
+
+                <CopyTextField xs="3" Label="CEP" Value="@pessoaGerada.Endereco.Cep" />
+                <CopyTextField xs="3" Label="Número" Value="@pessoaGerada.NumeroEndereco" />
+                <CopyTextField xs="3" Label="Estado" Value="@pessoaGerada.Endereco.Estado" />
+                <CopyTextField xs="3" Label="Cidade" Value="@pessoaGerada.Endereco.Cidade" />
+                <CopyTextField xs="6" Label="Endereço" Value="@pessoaGerada.Endereco.Rua" />
+                <CopyTextField xs="6" Label="Bairro" Value="@pessoaGerada.Endereco.Bairro" />         
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions>
+            @if (carregando)
+            {
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+            }
+            else
+            {
+                <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarPessoa">Gerar Nova Pessoa</MudButton>
+            }
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de Pessoa foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso dos dados gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private PessoaDto pessoaGerada;
+    private bool comPontuacao = true;
+    private bool carregando = false;
+
+    protected override Task OnInitializedAsync()
+    {
+        pessoaGerada ??= new PessoaDto();
+
+        return base.OnInitializedAsync();
+    }
+
+    private async Task GerarPessoa()
+    {
+        carregando = true;
+        try
+        {
+            pessoaGerada = await GeradorPessoaService.Gerar(comPontuacao);
+        }
+        finally
+        {
+            carregando = false;
+        }
+    }
+}
