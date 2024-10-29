@@ -48,18 +48,32 @@ namespace GeradorDadosWebAssembly.Services
                .RuleFor(p => p.TipoSanguineo, f => GeradorDadosUtil.GerarTipoSanguineo(f))
                .Generate();
 
-            var enderecoApi = await ObterEnderecoApi();
-            AtribuirEnderecoApi(pessoa, enderecoApi);
+            try
+            {
+                var enderecoApi = await TaskUtil.ExecuteWithTimeout(ObterEnderecoApi, TimeSpan.FromSeconds(4));
+                AtribuirEnderecoApi(pessoa, enderecoApi);
+            }
+            catch
+            {
+                Console.WriteLine("API falhou, usando dados gerados.");
+            }
+
+            VerificarPontuacao(comPontuacao, pessoa);
 
             return pessoa;
         }
 
         private async Task<EnderecoDto> ObterEnderecoApi()
         {
-            var cepObtido = CepsBrasilExtension.GetRandomCep();
-            var cep = long.Parse(cepObtido.Replace("-", ""));
+            var cep = ObterCep();
             var enderecoApi = await _enderecoService.ObterEnderecoPorCep(cep);
             return enderecoApi;
+        }
+
+        private static long ObterCep()
+        {
+            var cepObtido = CepsBrasilExtension.GetRandomCep();
+            return long.Parse(cepObtido.Replace("-", ""));
         }
 
         private void AtribuirEnderecoApi(PessoaDto pessoa, EnderecoDto? enderecoApi)
@@ -68,6 +82,19 @@ namespace GeradorDadosWebAssembly.Services
             pessoa.Endereco.Bairro = enderecoApi?.Bairro ?? pessoa.Endereco.Bairro;
             pessoa.Endereco.Cidade = enderecoApi?.Cidade ?? pessoa.Endereco.Cidade;
             pessoa.Endereco.Estado = enderecoApi?.Estado ?? pessoa.Endereco.Estado;
+        }
+
+        private void VerificarPontuacao(bool comPontuacao, PessoaDto pessoa)
+        {
+            if (comPontuacao is false)
+            {
+                pessoa.Cpf = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Cpf);
+                pessoa.Rg = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Rg);
+                pessoa.Celular = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Celular);
+                pessoa.Telefone = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Telefone);
+                pessoa.Altura = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Altura);
+                pessoa.Endereco.Cep = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Endereco.Cep);
+            }
         }
     }
 }

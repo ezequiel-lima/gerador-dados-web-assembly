@@ -9,7 +9,7 @@
     <MudCard>
         <MudCardContent>
             <MudText Typo="Typo.h6">Gerar Pessoa com Pontuação?</MudText>
-            <MudText Typo="Typo.subtitle1">(Campos Futuros)</MudText>
+            <MudText Typo="Typo.subtitle1">(CPF, RG, Celular, Telefone, Altura, CEP)</MudText>
 
             <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
 
@@ -29,8 +29,8 @@
                 <CopyTextField xs="6" Label="E-Mail" Value="@pessoaGerada.Email" />
                 <CopyTextField xs="6" Label="Senha" Value="@pessoaGerada.Senha" />
 
-                <CopyTextField xs="3" Label="Telefone" Value="@pessoaGerada.Telefone" />
                 <CopyTextField xs="3" Label="Celular" Value="@pessoaGerada.Celular" />
+                <CopyTextField xs="3" Label="Telefone" Value="@pessoaGerada.Telefone" />
 
                 <CopyTextField xs="3" Label="Altura" Value="@pessoaGerada.Altura" />
                 <CopyTextField xs="3" Label="Peso" Value="@pessoaGerada.Peso" />
