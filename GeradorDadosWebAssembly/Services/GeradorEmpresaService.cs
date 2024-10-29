@@ -45,7 +45,7 @@ namespace GeradorDadosWebAssembly.Services
             try
             {
                 var cep = long.Parse(empresa.Cep.Replace("-", ""));
-                var enderecoApi = await _enderecoService.ObterEnderecoPorCep(cep);
+                var enderecoApi = await TaskUtil.ExecuteWithTimeout(() => ObterEnderecoApi(cep), TimeSpan.FromSeconds(4));
                 AtribuirEnderecoApi(empresa, enderecoApi);
                 empresa.InscricaoEstadual = InscricaoEstadualExtension.ObterInscricaoPorEstado(empresa.Estado);
             }
@@ -57,6 +57,11 @@ namespace GeradorDadosWebAssembly.Services
             VerificarPontuacao(comPontuacao, empresa);
 
             return empresa;
+        }
+
+        private async Task<EnderecoDto> ObterEnderecoApi(long cep)
+        {
+            return await _enderecoService.ObterEnderecoPorCep(cep);
         }
 
         private void AtribuirEnderecoApi(EmpresaDto empresa, EnderecoDto? enderecoApi)
