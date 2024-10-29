@@ -4,6 +4,6 @@ namespace GeradorDadosWebAssembly.Services.Interfaces
 {
     public interface IGeradorPessoaService
     {
-        Task<PessoaDto> Gerar(bool comPontuacao = true);
+        Task<PessoaDto> Gerar(bool comPontuacao = true, int? idade = null);
     }
 }

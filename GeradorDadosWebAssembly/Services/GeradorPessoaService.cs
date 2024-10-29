@@ -18,7 +18,7 @@ namespace GeradorDadosWebAssembly.Services
             _enderecoService = enderecoService;
         }
 
-        public async Task<PessoaDto> Gerar(bool comPontuacao = true)
+        public async Task<PessoaDto> Gerar(bool comPontuacao = true, int? idade = null)
         {
             var endereco = new Faker<EnderecoDto>("pt_BR")
                 .RuleFor(e => e.Cep, f => CepsBrasilExtension.GetRandomCep())
@@ -59,6 +59,7 @@ namespace GeradorDadosWebAssembly.Services
             }
 
             VerificarPontuacao(comPontuacao, pessoa);
+            VerificarIdade(idade, pessoa);
 
             return pessoa;
         }
@@ -94,6 +95,14 @@ namespace GeradorDadosWebAssembly.Services
                 pessoa.Telefone = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Telefone);
                 pessoa.Altura = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Altura);
                 pessoa.Endereco.Cep = FormatadorDeTextoUtil.RemoverPontuacao(pessoa.Endereco.Cep);
+            }
+        }
+
+        private void VerificarIdade(int? idade, PessoaDto pessoa)
+        {
+            if (idade is not null)
+            {
+                pessoa.DataNascimento = DateTime.Now.AddYears((int) -idade).ToString("dd/MM/yyyy");
             }
         }
     }

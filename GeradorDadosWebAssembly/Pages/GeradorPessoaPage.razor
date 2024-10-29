@@ -8,12 +8,26 @@
 <MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
     <MudCard>
         <MudCardContent>
-            <MudText Typo="Typo.h6">Gerar Pessoa com Pontuação?</MudText>
-            <MudText Typo="Typo.subtitle1">(CPF, RG, Celular, Telefone, Altura, CEP)</MudText>
-
-            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
-
             <MudGrid>
+                <MudItem xs="6">
+                    <MudText Typo="Typo.h6">Gerar Pessoa com Pontuação?</MudText>
+                    <MudText Typo="Typo.subtitle1">(CPF, RG, Celular, Telefone, Altura, CEP)</MudText>
+
+                    <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudText Typo="Typo.h6">Qual a idade da pessoa? (Opcional)</MudText>
+                    <MudSelect T="int?" Label="Idade" @bind-Value="_idadeSelecionada" Placeholder="Selecione a idade" Clearable="true">
+                        <MudSelectItem T="int?" Value="@(null)">Nenhuma</MudSelectItem>
+                        @for (int i = 16; i <= 100; i++)
+                        {
+                            int idade = i;
+                            <MudSelectItem T="int?" Value="@idade">@($"{idade} anos")</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+
                 <MudItem xs="12">
                     <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Dados Pessoais</MudText>
                     <MudDivider DividerType="DividerType.Middle" />
@@ -116,6 +130,7 @@
     private PessoaDto pessoaGerada;
     private bool comPontuacao = true;
     private bool carregando = false;
+    private int? _idadeSelecionada = null;
 
     protected override Task OnInitializedAsync()
     {
@@ -129,7 +144,7 @@
         carregando = true;
         try
         {
-            pessoaGerada = await GeradorPessoaService.Gerar(comPontuacao);
+            pessoaGerada = await GeradorPessoaService.Gerar(comPontuacao, _idadeSelecionada);
         }
         finally
         {
