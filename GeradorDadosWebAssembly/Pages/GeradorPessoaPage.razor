@@ -19,43 +19,78 @@
                     <MudDivider DividerType="DividerType.Middle" />
                 </MudItem>
 
-                <CopyTextField xs="6" Label="Nome" Value="@pessoaGerada.Nome" />
-                <CopyTextField xs="6" Label="CPF" Value="@pessoaGerada.Cpf" />
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <CopyTextField xs="6" Label="Nome" Value="@pessoaGerada.Nome" />
+                    <CopyTextField xs="6" Label="CPF" Value="@pessoaGerada.Cpf" />
+                    <CopyTextField xs="6" Label="RG" Value="@pessoaGerada.Rg" />
+                    <CopyTextField xs="3" Label="Data de Nascimento" Value="@pessoaGerada.DataNascimento" />
+                    <CopyTextField xs="3" Label="Gênero" Value="@pessoaGerada.Genero" />
+                    <CopyTextField xs="6" Label="E-Mail" Value="@pessoaGerada.Email" />
+                    <CopyTextField xs="6" Label="Senha" Value="@pessoaGerada.Senha" />
+                    <CopyTextField xs="3" Label="Celular" Value="@pessoaGerada.Celular" />
+                    <CopyTextField xs="3" Label="Telefone" Value="@pessoaGerada.Telefone" />
+                    <CopyTextField xs="3" Label="Altura" Value="@pessoaGerada.Altura" />
+                    <CopyTextField xs="3" Label="Peso" Value="@pessoaGerada.Peso" />
+                    <CopyTextField xs="3" Label="Tipo Sanguíneo" Value="@pessoaGerada.TipoSanguineo" />
+                    <CopyTextField xs="3" Label="Signo" Value="@pessoaGerada.Signo" />
 
-                <CopyTextField xs="6" Label="RG" Value="@pessoaGerada.Rg" />
-                <CopyTextField xs="3" Label="Data de Nascimento" Value="@pessoaGerada.DataNascimento" />
-                <CopyTextField xs="3" Label="Gênero" Value="@pessoaGerada.Genero" />
+                    <MudItem xs="12">
+                        <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Filiação</MudText>
+                        <MudDivider DividerType="DividerType.Middle" />
+                    </MudItem>
 
-                <CopyTextField xs="6" Label="E-Mail" Value="@pessoaGerada.Email" />
-                <CopyTextField xs="6" Label="Senha" Value="@pessoaGerada.Senha" />
+                    <CopyTextField xs="6" Label="Nome da Mãe" Value="@pessoaGerada.NomeMae" />
+                    <CopyTextField xs="6" Label="Nome do Pai" Value="@pessoaGerada.NomePai" />
 
-                <CopyTextField xs="3" Label="Celular" Value="@pessoaGerada.Celular" />
-                <CopyTextField xs="3" Label="Telefone" Value="@pessoaGerada.Telefone" />
+                    <MudItem xs="12">
+                        <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Endereço</MudText>
+                        <MudDivider DividerType="DividerType.Middle" />
+                    </MudItem>
 
-                <CopyTextField xs="3" Label="Altura" Value="@pessoaGerada.Altura" />
-                <CopyTextField xs="3" Label="Peso" Value="@pessoaGerada.Peso" />
-                <CopyTextField xs="3" Label="Tipo Sanguíneo" Value="@pessoaGerada.TipoSanguineo" />
-                <CopyTextField xs="3" Label="Signo" Value="@pessoaGerada.Signo" />
+                    <CopyTextField xs="3" Label="CEP" Value="@pessoaGerada.Endereco.Cep" />
+                    <CopyTextField xs="3" Label="Número" Value="@pessoaGerada.NumeroEndereco" />
+                    <CopyTextField xs="3" Label="Estado" Value="@pessoaGerada.Endereco.Estado" />
+                    <CopyTextField xs="3" Label="Cidade" Value="@pessoaGerada.Endereco.Cidade" />
+                    <CopyTextField xs="6" Label="Endereço" Value="@pessoaGerada.Endereco.Rua" />
+                    <CopyTextField xs="6" Label="Bairro" Value="@pessoaGerada.Endereco.Bairro" />
+                </MudHidden>
 
-                <MudItem xs="12">
-                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Filiação</MudText>
-                    <MudDivider DividerType="DividerType.Middle" />
-                </MudItem>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <CopyTextField xs="12" Label="Nome" Value="@pessoaGerada.Nome" />
+                    <CopyTextField xs="12" Label="CPF" Value="@pessoaGerada.Cpf" />
+                    <CopyTextField xs="12" Label="RG" Value="@pessoaGerada.Rg" />
+                    <CopyTextField xs="6" Label="Data de Nascimento" Value="@pessoaGerada.DataNascimento" />
+                    <CopyTextField xs="6" Label="Gênero" Value="@pessoaGerada.Genero" />
+                    <CopyTextField xs="12" Label="E-Mail" Value="@pessoaGerada.Email" />
+                    <CopyTextField xs="12" Label="Senha" Value="@pessoaGerada.Senha" />
+                    <CopyTextField xs="6" Label="Celular" Value="@pessoaGerada.Celular" />
+                    <CopyTextField xs="6" Label="Telefone" Value="@pessoaGerada.Telefone" />
+                    <CopyTextField xs="6" Label="Altura" Value="@pessoaGerada.Altura" />
+                    <CopyTextField xs="6" Label="Peso" Value="@pessoaGerada.Peso" />
+                    <CopyTextField xs="6" Label="Tipo Sanguíneo" Value="@pessoaGerada.TipoSanguineo" />
+                    <CopyTextField xs="6" Label="Signo" Value="@pessoaGerada.Signo" />
 
-                <CopyTextField xs="6" Label="Nome da Mãe" Value="@pessoaGerada.NomeMae" />
-                <CopyTextField xs="6" Label="Nome do Pai" Value="@pessoaGerada.NomePai" />
+                    <MudItem xs="12">
+                        <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Filiação</MudText>
+                        <MudDivider DividerType="DividerType.Middle" />
+                    </MudItem>
 
-                <MudItem xs="12">
-                    <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Endereço</MudText>
-                    <MudDivider DividerType="DividerType.Middle" />
-                </MudItem>
+                    <CopyTextField xs="12" Label="Nome da Mãe" Value="@pessoaGerada.NomeMae" />
+                    <CopyTextField xs="12" Label="Nome do Pai" Value="@pessoaGerada.NomePai" />
 
-                <CopyTextField xs="3" Label="CEP" Value="@pessoaGerada.Endereco.Cep" />
-                <CopyTextField xs="3" Label="Número" Value="@pessoaGerada.NumeroEndereco" />
-                <CopyTextField xs="3" Label="Estado" Value="@pessoaGerada.Endereco.Estado" />
-                <CopyTextField xs="3" Label="Cidade" Value="@pessoaGerada.Endereco.Cidade" />
-                <CopyTextField xs="6" Label="Endereço" Value="@pessoaGerada.Endereco.Rua" />
-                <CopyTextField xs="6" Label="Bairro" Value="@pessoaGerada.Endereco.Bairro" />         
+                    <MudItem xs="12">
+                        <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Endereço</MudText>
+                        <MudDivider DividerType="DividerType.Middle" />
+                    </MudItem>
+
+                    <CopyTextField xs="6" Label="CEP" Value="@pessoaGerada.Endereco.Cep" />
+                    <CopyTextField xs="6" Label="Número" Value="@pessoaGerada.NumeroEndereco" />
+                    <CopyTextField xs="6" Label="Estado" Value="@pessoaGerada.Endereco.Estado" />
+                    <CopyTextField xs="6" Label="Cidade" Value="@pessoaGerada.Endereco.Cidade" />
+                    <CopyTextField xs="12" Label="Endereço" Value="@pessoaGerada.Endereco.Rua" />
+                    <CopyTextField xs="12" Label="Bairro" Value="@pessoaGerada.Endereco.Bairro" />
+                </MudHidden>
+
             </MudGrid>
         </MudCardContent>
         <MudCardActions>
