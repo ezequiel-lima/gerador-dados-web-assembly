@@ -1,0 +1,48 @@
+﻿@page "/gerar-nif"
+@inject IGeradorNifService GeradorNifService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<PageTitle>Gerador de Dados de NIFs</PageTitle>
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar NIF</MudText>
+            <MudText Typo="Typo.subtitle1">
+                Observação: o NIF gerado pode pertencer a qualquer lugar do mundo. (pessoas singulares)
+            </MudText>
+
+            <MudTextField Class="mt-2" @bind-Value="nifGerado" Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarNif"
+                          Label="NIF" Variant="Variant.Text" MaxLength="0" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarNif">Gerar Novo NIF</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de NIF foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de NIFs gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? nifGerado;
+
+    private void GerarNif()
+    {
+        nifGerado = GeradorNifService.Gerar();
+    }
+
+    private async Task CopiarNif()
+    {
+        if (!string.IsNullOrEmpty(nifGerado))
+        {
+            await ClipboardService.WriteTextAsync(nifGerado);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}

@@ -83,5 +83,25 @@ namespace GeradorDadosWebAssembly.Utils
 
             return $"{rgBase.Substring(0, 2)}.{rgBase.Substring(2, 3)}.{rgBase.Substring(5, 3)}-{digitoVerificador}";
         }
+
+        public static string GerarNif(Faker faker)
+        {
+            // Gera os primeiros 8 dígitos aleatórios (1 a 8 representam contribuinte individual)
+            string nifBase = faker.Random.Number(10000000, 99999999).ToString();
+
+            // Calcula o dígito de controle
+            int soma = 0;
+            for (int i = 0; i < nifBase.Length; i++)
+            {
+                int peso = 9 - i;
+                soma += (nifBase[i] - '0') * peso;
+            }
+
+            int resto = soma % 11;
+            int digitoControle = (resto == 0 || resto == 1) ? 0 : 11 - resto;
+
+            // Retorna o NIF completo
+            return $"{nifBase}{digitoControle}";
+        }
     }
 }

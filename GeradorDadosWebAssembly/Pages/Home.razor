@@ -70,6 +70,11 @@
                       Description="Gere perfis completos de pessoas fictícias com dados válidos, incluindo nome, CPF, RG, endereço, e mais. Ideal para testes de aplicações."
                       Href="gerar-pessoa" />
             </MudItem>
+            <MudItem xs="4">
+                <Card Image="images/generate-nif.png" Title="Gerador NIF"
+                      Description="Gere Números de Identificação Fiscal (NIF) válidos para testes, com cálculo automático do dígito de controle para garantir a autenticidade."
+                      Href="gerar-nif" />
+            </MudItem>
         </MudHidden>
 
         @* Exibir em telas pequenas *@
@@ -88,6 +93,9 @@
             </MudItem>
             <MudItem xs="4">
                 <Card Image="images/generate-pessoa.png" Title="Gerador Pessoa" TypoTitle="Typo.subtitle1" Href="gerar-pessoa" Height="100" />
+            </MudItem>
+            <MudItem xs="4">
+                <Card Image="images/generate-nif.png" Title="Gerador NIF" TypoTitle="Typo.subtitle1" Href="gerar-nif" Height="100" />
             </MudItem>
         </MudHidden>
 
