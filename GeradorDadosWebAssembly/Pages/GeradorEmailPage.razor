@@ -1,0 +1,45 @@
+﻿@page "/gerar-email"
+@inject IGeradorEmailService GeradorEmailService
+@inject IClipboardService ClipboardService
+@inject ISnackbar Snackbar
+
+<PageTitle>Gerador de Dados de E-mail</PageTitle>
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h6">Gerar E-mail</MudText>
+
+            <MudTextField Class="mt-2" @bind-Value="emailGerado" Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarEmail"
+                          Label="E-mail" Variant="Variant.Text" MaxLength="0" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmail">Gerar Novo E-mail</MudButton>
+        </MudCardActions>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de E-mail foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de E-mails gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? emailGerado;
+
+    private void GerarEmail()
+    {
+        emailGerado = GeradorEmailService.Gerar();
+    }
+
+    private async Task CopiarEmail()
+    {
+        if (!string.IsNullOrEmpty(emailGerado))
+        {
+            await ClipboardService.WriteTextAsync(emailGerado);
+            Snackbar.Add("Copiado!", Severity.Success);
+        }
+    }
+}
