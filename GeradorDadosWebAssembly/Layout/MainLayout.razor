@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
 @* Required *@
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode"  Theme="CustomTheme"/>
 <MudPopoverProvider />
 
 @* Needed for dialogs *@
@@ -38,10 +38,23 @@
 
 @code {
     bool _drawerOpen = true;
-    private bool _isDarkMode;
+    private bool _isDarkMode = true;
 
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    MudTheme CustomTheme = new MudTheme()
+        {
+            PaletteLight = new PaletteLight()
+            {
+                Primary = Colors.Amber.Darken3,
+                AppbarBackground = Colors.Amber.Darken3              
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Amber.Darken3
+            }
+        };
 }

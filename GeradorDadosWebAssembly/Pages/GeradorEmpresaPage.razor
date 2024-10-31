@@ -8,12 +8,27 @@
 <MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
     <MudCard>
         <MudCardContent>
-            <MudText Typo="Typo.h6">Gerar Empresa com Pontuação?</MudText>
-            <MudText Typo="Typo.subtitle1">(Nome, CNPJ, CEP, Telefone, Celular, CPF)</MudText>
-
-            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
-
             <MudGrid>
+                <MudItem xs="12">
+                    <MudText Typo="Typo.h6">Gerar Empresa com Pontuação?</MudText>
+                    <MudText Typo="Typo.subtitle1">(Nome, CNPJ, CEP, Telefone, Celular, CPF)</MudText>
+
+                    <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+                </MudItem>
+
+                <MudFlexBreak />
+
+                <MudItem xs="12">
+                    @if (carregando)
+                    {
+                        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+                    }
+                    else
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmpresa">Gerar Nova Empresa</MudButton>
+                    }
+                </MudItem>
+
                 <MudItem xs="12">
                     <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Empresa</MudText>
                     <MudDivider DividerType="DividerType.Middle" />
@@ -71,17 +86,7 @@
                     </MudHidden>
                 }
             </MudGrid>
-        </MudCardContent>
-        <MudCardActions>
-            @if (carregando)
-            {
-                <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
-            }
-            else
-            {
-                <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmpresa">Gerar Nova Empresa</MudButton>
-            }
-        </MudCardActions>
+        </MudCardContent>     
     </MudCard>
 
     <MudText Class="mt-4">

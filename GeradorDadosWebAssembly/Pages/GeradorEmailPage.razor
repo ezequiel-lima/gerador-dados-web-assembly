@@ -8,15 +8,22 @@
 <MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
     <MudCard>
         <MudCardContent>
-            <MudText Typo="Typo.h6">Gerar E-mail</MudText>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Typo="Typo.h6">Gerar E-mail</MudText>   
+                </MudItem>
 
-            <MudTextField Class="mt-2" @bind-Value="emailGerado" Adornment="Adornment.End"
-                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarEmail"
-                          Label="E-mail" Variant="Variant.Text" MaxLength="0" />
+                <MudItem xs="12">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmail">Gerar Novo E-mail</MudButton>
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="emailGerado" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarEmail"
+                                  Label="E-mail" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+            </MudGrid>
         </MudCardContent>
-        <MudCardActions>
-            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarEmail">Gerar Novo E-mail</MudButton>
-        </MudCardActions>
     </MudCard>
 
     <MudText Class="mt-4">

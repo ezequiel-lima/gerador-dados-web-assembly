@@ -8,17 +8,23 @@
 <MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
     <MudCard>
         <MudCardContent>
-            <MudText Typo="Typo.h6">Gerar CNPJ com Pontuação?</MudText>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Typo="Typo.h6">Gerar CNPJ com Pontuação?</MudText>
+                    <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+                </MudItem>
 
-            <MudSwitch @bind-Value="comPontuacao" Color="Color.Primary" />
+                <MudItem xs="12">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCnpj">Gerar Novo CNPJ</MudButton>
+                </MudItem>
 
-            <MudTextField Class="mt-2" @bind-Value="cnpjGerado" Adornment="Adornment.End"
-                          AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarCnpj"
-                          Label="CNPJ" Variant="Variant.Text" MaxLength="0" />
-        </MudCardContent>
-        <MudCardActions>
-            <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCnpj">Gerar Novo CNPJ</MudButton>
-        </MudCardActions>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="cnpjGerado" Adornment="Adornment.End"
+                                  AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="CopiarCnpj"
+                                  Label="CNPJ" Variant="Variant.Text" MaxLength="0" />
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>      
     </MudCard>
 
     <MudText Class="mt-4">

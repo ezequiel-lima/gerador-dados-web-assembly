@@ -29,6 +29,17 @@
                 </MudItem>
 
                 <MudItem xs="12">
+                    @if (carregando)
+                    {
+                        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+                    }
+                    else
+                    {
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarPessoa">Gerar Nova Pessoa</MudButton>
+                    }
+                </MudItem>
+
+                <MudItem xs="12">
                     <MudText Align="Align.Center" Typo="Typo.subtitle1" Color="Color.Primary">Dados Pessoais</MudText>
                     <MudDivider DividerType="DividerType.Middle" />
                 </MudItem>
@@ -104,19 +115,9 @@
                     <CopyTextField xs="12" Label="Endereço" Value="@pessoaGerada.Endereco.Rua" />
                     <CopyTextField xs="12" Label="Bairro" Value="@pessoaGerada.Endereco.Bairro" />
                 </MudHidden>
-
             </MudGrid>
         </MudCardContent>
-        <MudCardActions>
-            @if (carregando)
-            {
-                <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
-            }
-            else
-            {
-                <MudButton Class="mt-2" Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarPessoa">Gerar Nova Pessoa</MudButton>
-            }
-        </MudCardActions>
+        
     </MudCard>
 
     <MudText Class="mt-4">
