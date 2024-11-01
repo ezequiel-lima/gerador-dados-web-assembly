@@ -1,0 +1,107 @@
+﻿@page "/personalizar-geradores"
+@inject ISnackbar Snackbar
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Typo="Typo.h5">Selecione um gerador para adicionar à página</MudText>
+                </MudItem>
+
+                <MudItem xs="6">
+                    <MudSelect T="Type" Label="Escolha o Gerador" @bind-Value="geradorSelecionado">
+                        <MudSelectItem Value="typeof(GeradorCpfPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.PermIdentity" Class="mr-2" /> Gerador de CPF
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorCnpjPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.Badge" Class="mr-2" /> Gerador de CNPJ
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorCepPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.LocationOn" Class="mr-2" /> Gerador de CEP
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorEmpresaPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.Business" Class="mr-2" /> Gerador de Empresa
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorPessoaPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.Person" Class="mr-2" /> Gerador de Pessoa
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorNifPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.Fingerprint" Class="mr-2" /> Gerador de Nif
+                            </MudText>
+                        </MudSelectItem>
+                        <MudSelectItem Value="typeof(GeradorEmailPage)">
+                            <MudText Class="d-flex">
+                                <MudIcon Icon="@Icons.Material.Outlined.Email" Class="mr-2" /> Gerador de E-mail
+                            </MudText>
+                        </MudSelectItem>
+                    </MudSelect>
+                </MudItem>
+
+                <MudFlexBreak />
+
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <MudItem xs="12">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AdicionarGerador">Adicionar Gerador</MudButton>
+                        <MudButton Class="ml-2" Variant="Variant.Filled" Color="Color.Secondary" OnClick="LimparGerador">Limpar Gerador</MudButton>
+                    </MudItem>
+                </MudHidden>
+
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <MudItem xs="12">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AdicionarGerador">Adicionar</MudButton>
+                        <MudButton Class="ml-2" Variant="Variant.Filled" Color="Color.Secondary" OnClick="LimparGerador">Limpar</MudButton>
+                    </MudItem>
+                </MudHidden>
+
+            </MudGrid>
+        </MudCardContent>
+    </MudCard>
+
+    <MudDivider Class="mt-4" />
+</MudContainer>
+
+@foreach (var componentType in geradoresSelecionados)
+{
+    <DynamicComponent Type="componentType" />
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudDivider />
+    </MudContainer>
+}
+
+@code {
+    private List<Type> geradoresSelecionados;
+    private Type? geradorSelecionado;
+
+    protected override void OnInitialized()
+    {
+        geradoresSelecionados ??= new List<Type>();
+    }
+
+    private void AdicionarGerador()
+    {
+        if (geradorSelecionado is not null)
+        {
+            geradoresSelecionados.Add(geradorSelecionado);
+            geradorSelecionado = null;
+            Snackbar.Add("Gerador adicionado!", Severity.Success);
+        }
+    }
+
+    private void LimparGerador()
+    {
+        geradoresSelecionados.Clear();
+        Snackbar.Add("Geradores removido!", Severity.Normal);
+    }
+}
