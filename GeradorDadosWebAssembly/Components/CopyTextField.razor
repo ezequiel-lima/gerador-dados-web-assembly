@@ -3,7 +3,7 @@
 @inject ISnackbar Snackbar
 
 <MudItem xs="@xs">
-    <MudTextField Class="mt-2" @bind-Value="Value" Adornment="Adornment.End"
+    <MudTextField @bind-Value="Value" Adornment="Adornment.End"
                   AdornmentIcon="@Icons.Material.Filled.ContentCopy" OnAdornmentClick="() => Copiar(Value)"
                   Label="@Label" Variant="Variant.Text" MaxLength="0" />
 </MudItem>
