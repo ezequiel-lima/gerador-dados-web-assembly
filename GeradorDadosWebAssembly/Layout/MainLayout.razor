@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
 @* Required *@
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode"  Theme="CustomTheme"/>
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="CustomTheme" />
 <MudPopoverProvider />
 
 @* Needed for dialogs *@
@@ -50,11 +50,13 @@
             PaletteLight = new PaletteLight()
             {
                 Primary = Colors.Amber.Darken3,
-                AppbarBackground = Colors.Amber.Darken3              
+                Secondary = Colors.Brown.Lighten1,
+                AppbarBackground = Colors.Amber.Darken3
             },
             PaletteDark = new PaletteDark()
             {
-                Primary = Colors.Amber.Darken3
+                Primary = Colors.Amber.Darken3,
+                Secondary = Colors.Brown.Lighten1
             }
         };
 }
