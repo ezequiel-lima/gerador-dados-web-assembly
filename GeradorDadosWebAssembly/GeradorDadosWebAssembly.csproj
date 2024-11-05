@@ -11,8 +11,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all" />
     <PackageReference Include="MudBlazor" Version="7.14.0" />
-    <PackageReference Include="Refit" Version="7.2.1" />
-    <PackageReference Include="Refit.HttpClientFactory" Version="7.2.1" />
+    <PackageReference Include="Refit" Version="8.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
     <PackageReference Include="SecureIdentity" Version="1.0.4" />
   </ItemGroup>
 
