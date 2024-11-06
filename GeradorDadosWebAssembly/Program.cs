@@ -27,5 +27,6 @@ builder.Services.AddScoped<IGeradorEmpresaService, GeradorEmpresaService>();
 builder.Services.AddScoped<IGeradorPessoaService, GeradorPessoaService>();
 builder.Services.AddScoped<IGeradorNifService, GeradorNifService>();
 builder.Services.AddScoped<IGeradorEmailService, GeradorEmailService>();
+builder.Services.AddScoped<IGeradorCnhService, GeradorCnhService>();
 
 await builder.Build().RunAsync();

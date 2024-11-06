@@ -64,7 +64,7 @@ namespace GeradorDadosWebAssembly.Utils
         public static string GerarRgValido()
         {
             var random = new Random();
-            var rgBase = random.Next(10000000, 99999999).ToString(); 
+            var rgBase = random.Next(10000000, 99999999).ToString();
             int[] pesos = { 2, 3, 4, 5, 6, 7, 8, 9 };
             int soma = 0;
 
@@ -102,6 +102,46 @@ namespace GeradorDadosWebAssembly.Utils
 
             // Retorna o NIF completo
             return $"{nifBase}{digitoControle}";
+        }
+
+        public static string GerarCnh(Faker faker)
+        {
+            // Gerar os nove primeiros dígitos da CNH
+            string numeroBase = faker.Random.ReplaceNumbers("#########");
+
+            int dv1 = 0, dv2 = 0;
+            int nM1 = 9, nM2 = 1;
+
+            // Cálculo inicial de DV1 e DV2
+            for (int i = 0; i < numeroBase.Length; i++)
+            {
+                int nVL = numeroBase[i] - '0';
+                dv1 += nVL * nM1;
+                dv2 += nVL * nM2;
+                nM1--;
+                nM2++;
+            }
+
+            // Cálculo do primeiro dígito verificador (DV1)
+            dv1 %= 11;
+            bool lMaior = dv1 > 9;
+            if (lMaior) dv1 = 0;
+
+            // Cálculo do segundo dígito verificador (DV2) com ajuste
+            dv2 %= 11;
+            if (lMaior)
+            {
+                // Regras para ajuste de DV2 se DV1 > 9
+                if (dv2 - 2 < 0)
+                    dv2 += 9;
+                else
+                    dv2 -= 2;
+            }
+
+            if (dv2 > 9) dv2 = 0;
+
+            // Retornar o número completo da CNH com os dígitos verificadores
+            return $"{numeroBase}{dv1}{dv2}";
         }
     }
 }

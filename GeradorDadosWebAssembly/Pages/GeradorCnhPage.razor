@@ -1,0 +1,37 @@
+﻿@page "/gerar-cnh"
+@inject IGeradorCnhService GeradorCnhService
+
+<PageTitle>Gerador de Dados de CNH</PageTitle>
+
+<MudContainer Class="mt-8" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudText Typo="Typo.h6">Gerar CNH</MudText>   
+                </MudItem>
+
+                <MudItem xs="12">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="GerarCnh">Gerar Novo CNH</MudButton>
+                </MudItem>
+
+                <CopyTextField xs="12" Label="CNH" Value="@cnhGerado" />
+            </MudGrid>
+        </MudCardContent>
+    </MudCard>
+
+    <MudText Class="mt-4">
+        Este gerador de CNH foi criado para auxiliar o desenvolvimento de software,
+        fornecendo dados fictícios para testes e simulações.
+        O uso de CNHs gerados aqui é de total responsabilidade do usuário.
+    </MudText>
+</MudContainer>
+
+@code {
+    private string? cnhGerado;
+
+    private void GerarCnh()
+    {
+        cnhGerado = GeradorCnhService.Gerar();
+    }
+}
