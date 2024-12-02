@@ -99,5 +99,45 @@
             </MudItem>
         </MudHidden>
 
+        @* Exibir em tela normal e grande *@
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <MudItem xs="12">
+                <MudPaper Outlined="true">
+                    <MudGrid>
+                        <MudItem xs="4">
+                            <MudImage Src="images/mascote.png" Width="250" />
+                        </MudItem>
+                        <MudItem xs="7">
+                            <MudText Typo="Typo.subtitle1" Class="mt-10">
+                                "Qualquer tolo pode ter coragem, mas honra essa é a verdadeira razão para você fazer ou não fazer uma coisa.
+                                Você deve pedir coragem e agir com honra,
+                                e talvez até rezar para que as pessoas que mandam as tenham também." - <b>The Blind Side</b>
+                            </MudText>
+                        </MudItem>
+                        <MudSpacer/>
+                    </MudGrid>
+                </MudPaper>
+            </MudItem>
+        </MudHidden>
+
+        @* Exibir em telas pequenas *@
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <MudItem xs="12">
+                <MudPaper Outlined="true">
+                    <MudGrid>
+                        <MudItem xs="4">
+                            <MudImage Src="images/mascote.png" Fluid="true" Width="150" />
+                        </MudItem>
+                        <MudItem xs="8">
+                            <MudText Typo="Typo.subtitle2" Class="mt-4 mr-2 mb-2">
+                                "Você deve pedir coragem e agir com honra,
+                                e talvez até rezar para que as pessoas que mandam as tenham também." - <b>The Blind Side</b>
+                            </MudText>
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            </MudItem>
+        </MudHidden>
+
     </MudGrid>
 </MudContainer>
