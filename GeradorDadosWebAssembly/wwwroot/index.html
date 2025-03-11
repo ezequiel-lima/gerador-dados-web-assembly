@@ -11,15 +11,17 @@
             document.write('<base href="/" />');
         } else {
             document.write('<base href="https://ezequiel-lima.github.io/gerador-dados-web-assembly/" />');
-        }
-    </script>
 
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "qmpo4haafm");
+            var clarityScript = document.createElement("script");
+            clarityScript.type = "text/javascript";
+            clarityScript.text = `(function (c, l, a, r, i, t, y) {
+                c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+                t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "qmpo4haafm");`;
+
+            document.head.appendChild(clarityScript);
+        }
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />

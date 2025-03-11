@@ -110,35 +110,38 @@ namespace GeradorDadosWebAssembly.Utils
             string numeroBase = faker.Random.ReplaceNumbers("#########");
 
             int dv1 = 0, dv2 = 0;
-            int nM1 = 9, nM2 = 1;
+            int peso1 = 9, peso2 = 1;
 
-            // Cálculo inicial de DV1 e DV2
+            // Cálculo dos dígitos verificadores
             for (int i = 0; i < numeroBase.Length; i++)
             {
-                int nVL = numeroBase[i] - '0';
-                dv1 += nVL * nM1;
-                dv2 += nVL * nM2;
-                nM1--;
-                nM2++;
+                int digito = numeroBase[i] - '0';
+                dv1 += digito * peso1;
+                dv2 += digito * peso2;
+                peso1--;
+                peso2++;
             }
 
-            // Cálculo do primeiro dígito verificador (DV1)
+            // Cálculo do primeiro dígito verificador (dv1)
             dv1 %= 11;
-            bool lMaior = dv1 > 9;
-            if (lMaior) dv1 = 0;
-
-            // Cálculo do segundo dígito verificador (DV2) com ajuste
-            dv2 %= 11;
-            if (lMaior)
+            if (dv1 > 9)
             {
-                // Regras para ajuste de DV2 se DV1 > 9
-                if (dv2 - 2 < 0)
-                    dv2 += 9;
-                else
-                    dv2 -= 2;
+                dv1 = 0;
             }
 
-            if (dv2 > 9) dv2 = 0;
+            // Cálculo do segundo dígito verificador (dv2)
+            dv2 %= 11;
+            if (dv2 > 9)
+            {
+                dv2 = 0;
+            }
+
+            // Ajuste especial: se dv1 = 0 e dv2 = 10, ambos devem ser 1
+            if (dv1 == 0 && dv2 == 10)
+            {
+                dv1 = 1;
+                dv2 = 1;
+            }
 
             // Retornar o número completo da CNH com os dígitos verificadores
             return $"{numeroBase}{dv1}{dv2}";
